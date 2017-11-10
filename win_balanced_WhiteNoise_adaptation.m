@@ -6,7 +6,7 @@ Screen('Preference', 'SkipSyncTests', 2);
 screens = Screen('Screens');
 screenNumber = max(screens);
 white = WhiteIndex(screenNumber);
-[window, windowRect] = PsychImaging('OpenWindow', screenNumber, white/2); % grey window
+[window, windowRect] = PsychImaging('OpenWindow', screenNumber, 0); % black window
 ifi = Screen('GetFlipInterval', window);
 umTopix=0.3484;
 lptwrite(57600, 0);
@@ -28,7 +28,7 @@ MaxIntensity=white;
 waitframes = round(1/(ifi*freq));
 times=round(freq*t);
 magnify=mosaicSzInReal*umTopix;
-mosaicNum=round([ActualRect(4)/magnify ActualRect(3)/magnify]);
+mosaicNum=round([(ActualRect(4)-ActualRect(2))/magnify (ActualRect(3)-ActualRect(1))/magnify]);
 mosaicTArr=uint8([zeros(1,times/2),ones(1,times/2)]); 
 mosaicMat=zeros([mosaicNum times],'uint8');
 %================================
@@ -36,6 +36,7 @@ mosaicMat=zeros([mosaicNum times],'uint8');
 
 %grey for adaptation
 frames_grey = round(t_grey / ifi);
+Screen('FillRect',window,white/2,ActualRect);
 vbl = Screen('Flip', window);
 lptwrite(57600, 1);
 
@@ -64,6 +65,7 @@ while (~KbCheck)&&(i<=times)
     i=i+1;
 end
 lptwrite(57600, 0);
+Screen('FillRect',window,white/2,ActualRect);
 Screen('Flip', window, vbl + (waitframes - 0.5) * ifi);
 lptwrite(57600, 1);
 
