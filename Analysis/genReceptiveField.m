@@ -6,13 +6,14 @@ function rece_f=genReceptiveField(mosaicMat,response,tickrate,stimInterval)
 %stimulus.
 rece_f=@receptive_fleid;
     function final=receptive_fleid(tau)
+        tautick=round(tau*tickrate);
         tmp=size(mosaicMat);
         mosaicNum=tmp(1:2);
         frameN=min([tmp(3) length(stimInterval)]);
         total_Mean=mean(response(stimInterval(1,1)+tautick:stimInterval(frameN,2)+tautick));
             final=zeros(mosaicNum);
             for i=1:frameN
-                tautick=round(tau*tickrate);
+                
                 final=final+(mean(response(stimInterval(i,1)+tautick:stimInterval(i,2)+tautick))-total_Mean)*double(mosaicMat(:,:,i));
             end
             final=final/frameN/255*2;
