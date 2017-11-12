@@ -11,11 +11,21 @@ rece_f=@receptive_fleid;
         mosaicNum=tmp(1:2);
         frameN=min([tmp(3) length(stimInterval)]);
         total_Mean=mean(response(stimInterval(1,1)+tautick:stimInterval(frameN,2)+tautick));
+<<<<<<< HEAD
             final=zeros(mosaicNum);
             for i=1:frameN
                 
                 final=final+(mean(response(stimInterval(i,1)+tautick:stimInterval(i,2)+tautick))-total_Mean)*double(mosaicMat(:,:,i));
             end
             final=final/frameN/255*2;
+=======
+        final=zeros(mosaicNum);
+        
+        for i=1:frameN
+
+            final=final+(mean(response(stimInterval(i,1)+tautick:stimInterval(i,2)+tautick))-total_Mean)*double(mosaicMat(:,:,i));
+        end
+        final=final/frameN/255*2;
+>>>>>>> a2175040b8072eaa080567315e481e4f2e96b2e4
     end
 end
