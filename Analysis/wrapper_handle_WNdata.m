@@ -3,7 +3,7 @@ name=resD(1:end-4);
 if ~endsWith(resD,'.mat')
     name=resD;
     resD=[resD '.mat'];
-    
+
 end
 if ~endsWith(stimD,'.mat')
     resD=[stimD '.mat'];
@@ -16,7 +16,7 @@ load(resD,'data','datastart','dataend','tickrate');
 %range for analysis is from the onset of 1st TTL to offset to last TTL
 
 chan5_TTL=data(datastart(5):dataend(5));
-chan5_TTL(chan5_TTL<0.5)=0; 
+chan5_TTL(chan5_TTL<0.5)=0;
 chan5_TTL(chan5_TTL>=0.5)=1;
 
 ana_rang=find(chan5_TTL==1,1):find(chan5_TTL==1,1,'last');
@@ -28,7 +28,7 @@ chan2=detrend(chan2)*10e12;%pA
 
 clear data;
 
-%  response=response;
+response=sign*response;
 T=(0:length(chan2)-1)/tickrate; %T start from 0
 %find all the ascending edge off TTL (indices)
 ascendT=find([1 chan5(1:end-1)]==0&chan5==1); %skipped the first TTL block
