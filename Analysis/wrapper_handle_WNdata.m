@@ -53,6 +53,6 @@ final = receptiveField_kernel(mosaicMat,chan2,tickrate,stimT,tau,res_interval,fr
 imagesc([ActualRect(1) ActualRect(3)],[ActualRect(4) ActualRect(2)],final)
 axis equal
 title(name,'Interpreter', 'none')
-xlabel(['size of mosaic= ',num2str(mosaicSzInReal),'um'])
+xlabel({['size of mosaic= ',num2str(mosaicSzInReal),'um'];['tau=',num2str(tau)];['res_interval=',num2str(res_interval)]},,'Interpreter', 'none')
 
 end
