@@ -15,7 +15,8 @@ tautick=round(tau*tickrate);
 res_inter_tick=round(res_interval*tickrate);
 
 %construct W vector
-W=mean(response(tautick+stimInterval(frameN,1)+(0:res_inter_tick)),2);
+W=mean(response(reshape(tautick,1,1,[])+stimInterval(frameN,1)+(0:res_inter_tick)),2);
+W=squeeze(W);
 W=W';
 
 %select stimulus for calculation receptive field
@@ -25,7 +26,11 @@ mosaicM=double(mosaicM');
 
 spatial_recep=W*mosaicM;
 
-final=(reshape(spatial_recep,mosaicNum)-mean(W)*reshape(sum(mosaicM,1),mosaicNum))/length(frameN)/255*2; %normalization
+raw_recep=reshape(spatial_recep',mosaicNum(1),mosaicNum(2),[]); %raw result
+W_mean=reshape(mean(W,2),1,1,[]);
+stim_mean=reshape(sum(mosaicM,1),mosaicNum);
+
+final=(raw_recep-W_mean.*stim_mean)/length(frameN)/255*2; % normalization
 
 end
 
