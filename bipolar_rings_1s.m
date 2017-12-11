@@ -10,7 +10,7 @@ black = BlackIndex(screenNumber);
 [xCen,yCen]=retCenter();
 umTopix=0.3484;
 
-ringsR=[1500 1550]; % in um, not pixel
+ringsR=[0 25; 25 50; 50 100; 100 150; 150 200; 200 250; 250 300; 300 350; 350 400]; % in um, not pixel
 flipSecs = 1;
 
 lptwrite(57600, 0);
