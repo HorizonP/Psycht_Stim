@@ -33,7 +33,7 @@ for i=1:length(spotsDiaPix)
     spotsDia=spotsDiaPix(i);
     Screen('FillOval', window, white ,[xCen-0.5*spotsDia yCen-0.5*spotsDia xCen+0.5*spotsDia yCen+0.5*spotsDia]);
     [secs, keyCode, deltaSecs]=KbWait;
-    if keyCode(41)==1 %ESC is pressed
+    if keyCode(41)==1 || keyCode(27)==1 %ESC is pressed
         break
     else
         vbl = Screen('Flip', window);

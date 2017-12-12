@@ -32,7 +32,7 @@ for i=1:length(workParam)
     thickness=workParam(i,2);
     Screen('FrameOval', window ,white ,[xCen-0.5*outerDia yCen-0.5*outerDia xCen+0.5*outerDia yCen+0.5*outerDia],thickness);
     [secs, keyCode, deltaSecs]=KbWait;
-    if keyCode(41)==1 %ESC is pressed
+    if keyCode(41)==1 || keyCode(27)==1     %ESC is pressed
         break
     else
         vbl = Screen('Flip', window);
